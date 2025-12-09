@@ -1,17 +1,7 @@
-# Crowdfunding_Platform
-
-### 📊 Database Design
-- **Database:** MySQL
-- **ER Model:** [`db_111403502.mwb`](db_111403502.mwb)
-- **SQL Schema:** [`db.sql`](db.sql)
-
----
-
-# 📦 Crowdfunding Platform Database System
+# Crowdfunding Platform Database System
 
 *A reward-based crowdfunding platform database design with full business logic implementation.*
 
----
 
 ## 🧑‍💻 Role
 
@@ -24,7 +14,6 @@
 * **Stored Procedures**
 * **Hash + Salt Password Security**
 
----
 
 ## 📌 1. Project Overview
 
@@ -37,9 +26,8 @@
 * 評論與回覆
 * 協同過濾式推薦系統
 
-我負責 **資料庫 schema 規劃、ER-Model 設計**，並撰寫 **12 項 Stored Procedures**，確保所有商業流程能以 SQL 自動化執行且符合平台規則。
+負責 **資料庫 schema 規劃、ER-Model 設計**，並撰寫 **12 項 Stored Procedures**，確保所有商業流程能以 SQL 自動化執行且符合平台規則。
 
----
 
 ## 📌 2. Responsibilities
 
@@ -66,7 +54,6 @@ Pre-Publish → Ongoing → Expired → Terminated
 (不可逆轉)
 ```
 
----
 
 ### **2️⃣ 密碼安全機制：Hash + Salt**
 
@@ -82,7 +69,6 @@ Hash 與 Salt 的邏輯實作於：
 * `sp_UpdatePwd`
 * `sp_Login`
 
----
 
 ### **3️⃣ Stored Procedures Implementation（12 項完整業務邏輯）**
 
@@ -94,7 +80,6 @@ Hash 與 Salt 的邏輯實作於：
 | `sp_Login`          | 登入會員、比對 hash 密碼  |
 | `sp_UpdatePwd`      | 驗證舊密碼後允許更新       |
 
----
 
 ### ✔ 提案與選項管理
 
@@ -103,7 +88,6 @@ Hash 與 Salt 的邏輯實作於：
 | `sp_CreateProposalOption` | 新增提案選項           |
 | `sp_UpdateProposalStatus` | 嚴格限制提案狀態遞進、不可逆流程 |
 
----
 
 ### ✔ 贊助流程
 
@@ -111,7 +95,6 @@ Hash 與 Salt 的邏輯實作於：
 | ------------------------ | ---------------------------- |
 | `sp_CreateSponsorRecord` | 建立贊助紀錄，並強制遵守「同一選項最多購買 5 件」規則 |
 
----
 
 ### ✔ 提案追蹤與評論
 
@@ -120,7 +103,6 @@ Hash 與 Salt 的邏輯實作於：
 | `sp_GetFollowedProposalsByMember` | 撈取會員追蹤且為 Ongoing 的提案 |
 | `sp_GetUnrepliedReviews`          | 查找所有會員擁有提案中尚未回覆的評論   |
 
----
 
 ### ✔ 進階查詢
 
@@ -129,15 +111,13 @@ Hash 與 Salt 的邏輯實作於：
 | `sp_GetProposalByCompletionRate`      | 依達成率（amount_raised / goal）排序 |
 | `sp_GetOngoingProposalOptionbyRating` | 依平均評分排序提案選項                  |
 
----
 
-### ✔ 推薦系統（含加分題）
+### ✔ 推薦系統
 
 | Procedure                    | 說明                                         |
 | ---------------------------- | ------------------------------------------ |
 | `sp_GetRecommendedProposals` | 使用協同過濾概念推薦提案。若無贊助紀錄，回傳瀏覽量最高的前五個 Ongoing 提案 |
 
----
 
 ### ✔ 會員刪除機制
 
@@ -145,7 +125,6 @@ Hash 與 Salt 的邏輯實作於：
 | ----------------- | ---------------------------------------- |
 | `sp_DeleteMember` | 移除會員，並處理所有關聯資料，以維護 referential integrity |
 
----
 
 ## 📌 3. Techniques Used
 
@@ -172,7 +151,6 @@ Hash 與 Salt 的邏輯實作於：
 * 推薦系統（協同過濾）
 * 未回覆評論查詢系統
 
----
 
 ## 📌 4. Key Takeaways
 
@@ -180,5 +158,3 @@ Hash 與 Salt 的邏輯實作於：
 * 熟悉多表關聯的資料建模
 * 能設計可擴充、可維護的資料庫 Schema
 * 將真實平台的複雜規則轉換為 Stored Procedure 的自動化流程
-
----
